@@ -1,11 +1,13 @@
 import React from 'react';
-import './App.css';
-import TestCompo from './Test';
+import './global'
+import { default as DotLoading } from './components/dot-loading'
+
+
 
 function App() {
   return (
     <div className="App">
-      <TestCompo/>
+        <DotLoading color='primary' />
     </div>
   );
 }
