@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 const classPrefix = `adm-dot-loading`;
 
-
 const colorRecord: Record<string, string> = {
     default: 'var(--adm-color-weak)',
     primary: 'var(--adm-color-primary)',

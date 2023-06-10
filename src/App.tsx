@@ -1,16 +1,32 @@
 import React from 'react';
-import {DotLoading} from './index'
-
+import routes from './router'
+import {
+  HashRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 
 function App() {
   return (
-    <div className="App">
-      <DotLoading
-        color='primary'
-      />
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          {routes.map((v, i) => {
+            return (
+              <Route
+                key={i}
+                component={v.component}
+                path={v.path}
+                exact={v.exact}
+              />
+            )
+          })}
+        </Switch>
+      </div>
+    </Router>
   );
 }
+
 
 export default App;
