@@ -1,13 +1,14 @@
 import React from 'react';
-import './global'
-import { default as DotLoading } from './components/dot-loading'
+import {DotLoading} from './index'
 
 
 
 function App() {
   return (
     <div className="App">
-        <DotLoading color='primary' />
+      <DotLoading
+        color='primary'
+      />
     </div>
   );
 }

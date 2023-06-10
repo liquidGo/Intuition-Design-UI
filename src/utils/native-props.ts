@@ -1,6 +1,6 @@
-import React,{AriaAttributes} from 'react'
-import type { CSSProperties,ReactElement } from 'react'
-import classNames from 'classnames'
+import React,{AriaAttributes} from 'react';
+import type { CSSProperties,ReactElement } from 'react';
+import classNames from 'classnames';
 
 export type NativeProps<S extends string=never>={
     className?:string;
@@ -15,23 +15,28 @@ export function withNativeProps<P extends NativeProps>(
     const p={
         ...element.props,
     }
+
     if(props.className){
         p.className=classNames(props.className,p.className)
     }
+
     if(props.style){
         p.style={
             ...props.style,
             ...p.style,
         }
     }
+
     if(props.tabIndex!==undefined){
         p.tabIndex=props.tabIndex
     }
+
     for(const key in props){
         if(!props.hasOwnProperty(key)) continue;
         if(key.startsWith('aria-')||key.startsWith('data-')){
             p[key]=props[key]
         }   
     }
+    
     return React.cloneElement(element,p)
 }
