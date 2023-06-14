@@ -19,8 +19,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
+    "baseUrl": "./",
     "paths": {
-      "antd-mobile": ["./src/App.tsx"],
+      "antd-mobile": ["src/exportIndex.ts"],
     }
   },
   "include": [

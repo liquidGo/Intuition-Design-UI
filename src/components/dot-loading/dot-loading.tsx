@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { mergeProps } from '../../utils/with-default-props';
-import { NativeProps, withNativeProps } from '../../utils/native-props';
+import { mergeProps } from 'src/utils/with-default-props';
+import { NativeProps, withNativeProps } from 'src/utils/native-props';
 import classNames from 'classnames';
 
 const classPrefix = `adm-dot-loading`;
@@ -8,7 +8,7 @@ const classPrefix = `adm-dot-loading`;
 const colorRecord: Record<string, string> = {
     default: 'var(--adm-color-weak)',
     primary: 'var(--adm-color-primary)',
-    white: 'var(--adm-color-white)',
+    white: 'var(--adm-color-white)'
 }
 
 export type DotLoadingProps = {
@@ -16,7 +16,7 @@ export type DotLoadingProps = {
 } & NativeProps;
 
 const defaultProps = {
-    color: 'default'
+    color: 'default',
 }
 
 export const DotLoading = memo<DotLoadingProps>(p => {
