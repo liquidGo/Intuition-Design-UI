@@ -20,9 +20,7 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": "./",
-    "paths": {
-      "antd-mobile": ["src/exportIndex.ts"],
-    }
+  
   },
   "include": [
     "src"
