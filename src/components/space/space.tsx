@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import classNames from 'classnames';
 import { mergeProps } from 'src/utils/with-default-props';
 import { NativeProps, withNativeProps } from 'src/utils/native-props';
@@ -6,8 +6,8 @@ import { NativeProps, withNativeProps } from 'src/utils/native-props';
 const classPrefix = `adm-space`;
 
 export type SpaceProps = {
-    direction?: 'horizontal' | 'vertical'
-    align?: 'start' | 'end' | 'center' | 'baseline'
+    direction?: 'horizontal' | 'vertical';
+    align?: 'start' | 'end' | 'center' | 'baseline';
     justify?:
     | 'start'
     | 'end'
@@ -16,19 +16,19 @@ export type SpaceProps = {
     | 'between'
     | 'evenly'
     | 'stretch'
-    wrap?: boolean
-    block?: boolean
-    onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
-    children?: React.ReactNode
-} & NativeProps<'--gap' | '--gap-vertical' | '--gap-horizontal'>
+    onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    wrap?: boolean;
+    block?: boolean;
+    children?:React.ReactNode;
+} & NativeProps<'--gap' | '--gap-vertial' | '--gap-horizontal'>;
 
 const defaultProps = {
     direction: 'horizontal',
 }
 
 export const Space: FC<SpaceProps> = p => {
-    const props = mergeProps(defaultProps, p)
-    const { direction, onClick } = props
+    const props = mergeProps(defaultProps, p);
+    const { direction, onClick } = props;
     return withNativeProps(
         props,
         <div
@@ -41,10 +41,10 @@ export const Space: FC<SpaceProps> = p => {
             })}
             onClick={onClick}
         >
-            {React.Children.map(props.children, (child, index) => {
+            {React.Children.map(props.children, child => {
                 return (
-                    child !== null &&
-                    child !== undefined && (
+                    child !== undefined &&
+                    child !== null && (
                         <div className={`${classPrefix}-item`}>{child}</div>
                     )
                 )
