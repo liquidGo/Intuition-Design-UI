@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { DotLoading } from '../../exportIndex';
-
-import {HandleButton} from '../../exportIndex';
+import { HandleButton ,HANDLE_BUTTON_TYPE } from '../../exportIndex';
 import { Space } from '../../exportIndex'
 import './index.less'
 
-interface IHomeProps {
-}
-const Home: React.FunctionComponent<IHomeProps> = (props) => {
+const Home: React.FunctionComponent<any> =p => {
+    console.log('@log: HANDLE_BUTTON_TYPE -----', HANDLE_BUTTON_TYPE);
     return (
         <div>
-            <HandleButton/>
+            <HandleButton
+                type={[HANDLE_BUTTON_TYPE.CREATE]}
+            />
             <DotLoading />
             <hr />
             <Space wrap>
