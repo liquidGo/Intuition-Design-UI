@@ -7,17 +7,17 @@
 .@{class-prefix-space} {
     display: inline-flex;
     --gap: 8px;
-    --gap-vertical: var(var(--gap));
-    --gap-horizontal: var(var(--gap));
+    --gap-vertical: var(--gap);
+    --gap-horizontal: var(--gap);
 
     &-vertical {
         flex-direction: column;
 
         >.@{class-prefix-space}-item {
-            margin-bottom: var(--gap-vertical);
+            margin-right: var(--gap-vertical);
 
             &:last-child {
-                margin-bottom: 0;
+                margin-right: 0;
             }
         }
     }
@@ -35,51 +35,68 @@
 
         &.@{class-prefix-space}-wrap {
             flex-wrap: wrap;
-            // @Description: 修复最后一行的间距
-            margin-bottom: calc(var(--gap-vertical)*-1);
-            // @Description: 每个bottom给一个间距
+            margin-bottom: calc(var(--gap-vertical) * -1);
+
             >.@{class-prefix-space}-item {
                 padding-bottom: var(--gap-vertical);
             }
         }
     }
-    &-block{
+
+    &-block {
         display: flex;
-    };
-    &-align{
-        &-center{
+    }
+
+    &-align {
+        &-center {
             align-items: center;
-        };
-        &-start{
+        }
+
+        ;
+
+        &-start {
             align-items: flex-start;
-        };
-        &-end{
+        }
+
+        ;
+
+        &-end {
             align-items: flex-end;
-        };
-        &-baseline{
+        }
+
+        ;
+
+        &-baseline {
             align-items: baseline;
         }
     }
-    &-justify{
-        &-center{
+
+    &-justify {
+        &-center {
             justify-content: center;
         }
-        &-start{
+
+        &-start {
             justify-content: flex-start;
         }
-        &-end{
+
+        &-end {
             justify-content: flex-end;
         }
-        &-between{
+
+        &-between {
             justify-content: space-between;
         }
-        &-around{
+
+        &-around {
             justify-content: space-around;
         }
-        &-evenly{
+
+        &-evenly {
             justify-content: space-evenly;
         }
-        &-stretch{
+
+        &-stretch {
             justify-content: stretch;
         }
     }
