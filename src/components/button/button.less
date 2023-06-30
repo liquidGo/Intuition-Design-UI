@@ -1,15 +1,15 @@
-@class-prefix-button: ~'adm-button';
+@class-prefix-button: ~'intuition-button';
 
 .@{class-prefix-button} {
-    --color: var(--adm-color-text-light-solid);
+    --color: var(--intuition-color-text-light-solid);
 
-    --text-color: var(--adm-button-text-color, var(--adm-color-text));
-    --background-color: var(--adm-button-background-color,
-            var(--adm-color-background));
-    --border-radius: var(--adm-button-border-radius, 4px);
-    --border-width: var(--adm-button-border-width, 1px);
-    --border-style: var(--adm-button-border-style, solid);
-    --border-color: var(--adm-button-border-color, var(--adm-color-border));
+    --text-color: var(--intuition-button-text-color, var(--intuition-color-text));
+    --background-color: var(--intuition-button-background-color,
+            var(--intuition-color-background));
+    --border-radius: var(--intuition-button-border-radius, 4px);
+    --border-width: var(--intuition-button-border-width, 1px);
+    --border-style: var(--intuition-button-border-style, solid);
+    --border-color: var(--intuition-button-border-color, var(--intuition-color-border));
 
     color: var(--text-color);
     background-color: var(--background-color);
@@ -19,7 +19,7 @@
     height: auto;
     padding: 7px 12px;
     margin: 0;
-    font-size: var(--adm-font-size-9);
+    font-size: var(--intuition-font-size-9);
     line-height: 1.4;
     text-align: center;
     border: var(--border-width) var(--border-style) var(--border-color);
@@ -55,7 +55,7 @@
     &-default {
         &.@{class-prefix-button}-fill-outline {
             --background-color: transparent;
-            --border-color: var(--adm-color-text);
+            --border-color: var(--intuition-color-text);
         }
 
         &.@{class-prefix-button}-fill-none {
@@ -65,7 +65,7 @@
     }
 
     &:not(&-default) {
-        --text-color: var(--adm-color-text-light-solid);
+        --text-color: var(--intuition-color-text-light-solid);
         --background-color: var(--color);
         --border-color: var(--color);
 
@@ -82,19 +82,19 @@
     }
 
     &-primary {
-        --color: var(--adm-color-primary);
+        --color: var(--intuition-color-primary);
     }
 
     &-success {
-        --color: var(--adm-color-success);
+        --color: var(--intuition-color-success);
     }
 
     &-danger {
-        --color: var(--adm-color-danger);
+        --color: var(--intuition-color-danger);
     }
 
     &-warning {
-        --color: var(--adm-color-warning);
+        --color: var(--intuition-color-warning);
     }
 
     &-block {
@@ -114,7 +114,7 @@
     &&-mini {
         padding-top: 3px;
         padding-bottom: 3px;
-        font-size: var(--adm-font-size-main);
+        font-size: var(--intuition-font-size-main);
 
         &.@{class-prefix-button}-shape-rounded {
             padding-left: 9px;
@@ -125,13 +125,13 @@
     &&-small {
         padding-top: 3px;
         padding-bottom: 3px;
-        font-size: var(--adm-font-size-7);
+        font-size: var(--intuition-font-size-7);
     }
 
     &&-large {
         padding-top: 11px;
         padding-bottom: 11px;
-        font-size: var(--adm-font-size-10);
+        font-size: var(--intuition-font-size-10);
     }
 
     &&-shape-rounded {
@@ -152,7 +152,7 @@
         align-items: center;
         justify-content: center;
 
-        >.adm-loading {
+        >.intuition-loading {
             opacity: 0.6;
         }
     }

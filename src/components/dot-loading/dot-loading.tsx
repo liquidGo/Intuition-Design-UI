@@ -3,7 +3,7 @@ import { mergeProps } from 'src/utils/with-default-props';
 import { NativeProps, withNativeProps } from 'src/utils/native-props';
 import classNames from 'classnames';
 
-const classPrefix = `adm-dot-loading`;
+const classPrefix = `intuition-dot-loading`;
 
 const colorRecord: Record<string, string> = {
     default: 'var(--intuition-color-weak)',

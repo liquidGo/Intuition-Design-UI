@@ -1,31 +1,32 @@
-import React, { useRef, useState, useImperativeHandle, forwardRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useRef } from 'react';
 import classNames from 'classnames';
-import { DotLoading } from '../../exportIndex';
+import { DotLoading } from 'src/exportIndex';
 import { mergeProps } from 'src/utils/with-default-props';
 import { NativeProps, withNativeProps } from 'src/utils/native-props';
 import { isPromise } from 'util/types';
 
-const classPrefix = `intuition-button`;
+const classPrefix = 'intuition-button';
 
-type NativeButtonProps = React.DetailedHTMLProps<
+export type NativeButtonProps = React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
 >
 
 export type ButtonProps = {
-    color?: 'default' | 'primary' | 'success' | 'warning'|'danger',
-    fill?:'solid'|'outline'|'none',
-    size?:'mini'|'small'|'middle'|'large',
-    block?:boolean,
-    loading?:boolean|'auto',
-    loadingText?:string,
-    loadingIcon?:React.ReactNode,
-    onClick?:(
-        event:React.MouseEvent<HTMLButtonElement,MouseEvent>
-    )=>void|Promise<void>|unknown,
-    type?:'submit'|'reset'|'button',
-    shape?:'default'|'rounded'|'rectangular',
-    children?:React.ReactNode,
+    color?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {})
+    fill?: 'solid' | 'outline' | 'none'
+    size?: 'large' | 'middle' | 'small'|'mini'
+    block?: boolean
+    loading?: boolean|'auto'
+    loadingText?:string
+    loadingIcon?:React.ReactNode
+    disabled?: boolean
+    onClick?: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => void | Promise<void> | unknown
+    type?:'submit'|'reset'|'button'
+    shape?:'default'|'rounded'|'rectangular'
+    children?: React.ReactNode
 } & Pick<
     NativeButtonProps,
     'onMouseDown' | 'onMouseUp' | 'onTouchStart' | 'onTouchEnd' | 'id'
@@ -39,47 +40,47 @@ export type ButtonProps = {
         | '--border-color'
     >
 
-export type ButtonRef={
+export type ButtonRef = {
     nativeElement: HTMLButtonElement | null
 }
 
-const defaultProps: any = {
-    color: 'default',
+const defaultProps: ButtonProps = {
+    color:'default',
     fill:'solid',
     block:false,
     loading:false,
-    loadingIcon:<DotLoading color='currentColor' />,
+    loadingIcon: <DotLoading color='currentColor' />,
     type:'button',
     shape:'default',
     size:'middle'
 }
 
-export const Button = forwardRef<any, any>((p, ref) => {
+export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
     const props = mergeProps(defaultProps, p);
     const [innerLoading, setInnerLoading] = useState(false);
     const nativeButtonRef = useRef<HTMLButtonElement>(null)
-    const loading = props.loading === 'auto' ? innerLoading : props.loading;
-    const disabled = props.disabled || loading;
+    const loading = props.loading === 'auto' ? innerLoading : props.loading
+    const disabled=props.disabled||loading
 
     useImperativeHandle(ref, () => ({
         get nativeElement() {
-            return nativeButtonRef.current;
+            return nativeButtonRef.current
         }
-    }));
+    }))
 
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
-        if (!props.onClick) return;
+    const handleClick: React.MouseEventHandler<HTMLButtonElement> = async e => {
+        if (!props.onClick) return
 
-        const promise = props.onClick(e);
+        const promise = props.onClick(e)
 
         if (isPromise(promise)) {
             try {
-                setInnerLoading(true);
-                await promise;
-                setInnerLoading(false);
+                setInnerLoading(true)
+                await promise
+                setInnerLoading(false)
             } catch (error) {
-                setInnerLoading(false);
-                throw error;
+                setInnerLoading(false)
+                throw error
             }
         }
     }
@@ -88,7 +89,6 @@ export const Button = forwardRef<any, any>((p, ref) => {
         props,
         <button
             ref={nativeButtonRef}
-            type={props.type}
             onClick={handleClick}
             className={classNames(
                 classPrefix,
@@ -102,7 +102,8 @@ export const Button = forwardRef<any, any>((p, ref) => {
                     [`${classPrefix}-small`]: props.size === 'small',
                     [`${classPrefix}-large`]: props.size === 'large',
                     [`${classPrefix}-loading`]: loading,
-                }
+                },
+                `${classPrefix}-${props.shape}`
             )}
             disabled={disabled}
             onMouseDown={props.onMouseDown}
@@ -111,7 +112,7 @@ export const Button = forwardRef<any, any>((p, ref) => {
             onTouchEnd={props.onTouchEnd}
         >
             {loading ? (
-                <div className={`${classPrefix}-loading-wrapper`}>
+                <div className={classNames(`${classPrefix}-loading-wrapper`)}>
                     {props.loadingIcon}
                     {props.loadingText}
                 </div>
