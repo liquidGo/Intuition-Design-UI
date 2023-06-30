@@ -6,9 +6,9 @@ import classNames from 'classnames';
 const classPrefix = `adm-dot-loading`;
 
 const colorRecord: Record<string, string> = {
-    default: 'var(--up-color-weak)',
-    primary: 'var(--up-color-primary)',
-    white: 'var(--up-color-white)'
+    default: 'var(--intuition-color-weak)',
+    primary: 'var(--intuition-color-primary)',
+    white: 'var(--intuition-color-white)'
 }
 
 export type DotLoadingProps = {
