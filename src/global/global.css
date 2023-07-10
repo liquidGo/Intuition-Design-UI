@@ -1,0 +1,74 @@
+:root {
+  --intuition-radius-s: 4px;
+  --intuition-radius-m: 8px;
+  --intuition-radius-l: 12px;
+  --intuition-font-size-1: 9px;
+  --intuition-font-size-2: 10px;
+  --intuition-font-size-3: 11px;
+  --intuition-font-size-4: 12px;
+  --intuition-font-size-5: 13px;
+  --intuition-font-size-6: 14px;
+  --intuition-font-size-7: 15px;
+  --intuition-font-size-8: 16px;
+  --intuition-font-size-9: 17px;
+  --intuition-font-size-10: 18px;
+  --intuition-color-primary: #1677ff;
+  --intuition-color-success: #00b578;
+  --intuition-color-warning: #ff8f1f;
+  --intuition-color-danger: #ff3141;
+  --intuition-color-text: #333333;
+  --intuition-color-text-secondary: #666666;
+  --intuition-color-weak: #999999;
+  --intuition-color-light: #cccccc;
+  --intuition-color-border: #eeeeee;
+  --intuition-color-background: #ffffff;
+  --intuition-color-white: #ffffff;
+  --intuition-color-box: #f5f5f5;
+  --intuition-color-text-light-solid: var(--intuition-color-white);
+  --intuition-color-text-dark-solid: #000000;
+  --intuition-color-fill-content: var(--intuition-color-box);
+  --intuition-font-size-main: var(--intuition-font-size-5);
+  --intuition-font-family: -apple-system, blinkmacsystemfont, 'Helvetica Neue',
+        helvetica, segoe ui, arial, roboto, 'PingFang SC', 'miui',
+        'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  --intuition-border-color: var(--intuition-color-border);
+}
+:root {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  color: var(--intuition-color-text);
+  font-size: var(--intuition-font-size-main);
+  font-family: var(--intuition-font-family);
+}
+a,
+button {
+  cursor: pointer;
+}
+a {
+  color: var(--intuition-color-primary);
+  transition: opacity ease-in-out 0.2s;
+}
+a:active {
+  opacity: 0.8;
+}
+.intuition-plain-anchor {
+  color: unset;
+  transition: none;
+}
+.intuition-plain-anchor:active {
+  opacity: unset;
+}
+body.intuition-overflow-hidden {
+  overflow: hidden !important;
+}
+div.intuition-px-tester {
+  --size: 1;
+  height: calc(var(--size) / 2 * 2px);
+  width: 0;
+  position: fixed;
+  right: -100vw;
+  bottom: -100vh;
+  user-select: none;
+  pointer-events: none;
+}

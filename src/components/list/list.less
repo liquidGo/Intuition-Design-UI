@@ -1,0 +1,105 @@
+@class-prefix-list: ~"intuition-list";
+@class-prefix-list-item: ~"intuition-list-item";
+
+.@{class-prefix-list} {
+    --herder-font-size: var(--intuition-font-size-7);
+    --prefix-with: 'auto';
+    --prefix-padding-right: 12px;
+    --align-items: center;
+    --active-background-color: var(--intuition-color-background);
+    --border-inner: solid 1px var(--intuition-color-border);
+    --border-top: solid 1px var(--intuition-color-border);
+    --border-bottom: solid 1px var(--intuition-color-border);
+    --padding-left: 12px;
+    --padding-right: 12px;
+    --font-size: var(--intuition-font-size-9);
+    --extra-max-width: 70%;
+
+    &-header {
+        color: var(--intuition-color-weak);
+        font-size: var(--herder-font-size);
+        padding: 8px var(--padding-right) 8px var(--padding-left);
+    }
+
+    &-body {
+        background-color: var(--intuition-color-background);
+        overflow: hidden;
+        font-size: var(--font-size);
+
+        &-inner {
+            margin-top: -1px;
+        }
+    }
+
+    &-default {
+        .@{class-prefix-list}-body {
+            border-top: var(--border-top);
+            border-bottom: var(--border-bottom);
+        }
+    }
+
+    &-card {
+        margin: 12px;
+
+        .@{class-prefix-list}-body {
+            border-radius: 8px;
+        }
+
+        .@{class-prefix-list}-header {
+            padding-left: 0;
+        }
+    }
+}
+
+.@{class-prefix-list-item} {
+    display: block;
+    padding-left: var(--padding-left);
+    position: relative;
+    background-color: var(--intuition-color-background);
+    line-height: 1.5;
+
+    &-title,
+    &-description {
+        color: var(--intuition-color-weak);
+        font-size: var(--intuition-font-size-main);
+    }
+
+    &-content {
+        display: flex;
+        align-items: var(--align-items);
+        justify-content: flex-start;
+        border-top: var(--border-inner);
+        padding-right: var(--padding-right);
+
+        &-prefix {
+            width: var(--prefix-with);
+            flex: none;
+            padding-right: var(--prefix-padding-right);
+        }
+
+        &-extra {
+            flex: none;
+            padding-left: 12px;
+            font-size: var(--intuition-font-size-7);
+            color: var(--intuition-color-weak);
+            max-width: var(--extra-max-width);
+        }
+
+        &-arrow {
+            flex: none;
+            display: flex;
+            align-items: center;
+            margin-left: 4px;
+            font-size: 19px;
+        }
+    }
+
+    &-disabled {
+        cursor: not-allowed;
+
+        &&>.@{class-prefix-list-item}>* {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+}

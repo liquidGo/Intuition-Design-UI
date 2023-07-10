@@ -3,9 +3,9 @@
   registry: 'https://registry.npmmirror.com',
   pkgs: [
     {
-      name: 'antd-mobile',
-      version: '4',
-      type: 'range',
+      name: 'antd-mobile-icon',
+      version: 'latest',
+      type: 'tag',
       alias: undefined,
       arg: [Result]
     }
@@ -15,7 +15,7 @@
   cacheDir: null,
   env: {
     npm_config_registry: 'https://registry.npmmirror.com',
-    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=/Users/alsc/.cnpmrc","--disturl=https://npmmirror.com/mirrors/node","--registry=https://registry.npmmirror.com","-S","-D","antd-mobile@4"],"original":["--fix-bug-versions","--china","--userconfig=/Users/alsc/.cnpmrc","--disturl=https://npmmirror.com/mirrors/node","--registry=https://registry.npmmirror.com","-S","-D","antd-mobile@4"]}',
+    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=/Users/alsc/.cnpmrc","--disturl=https://npmmirror.com/mirrors/node","--registry=https://registry.npmmirror.com","antd-mobile-icon","-S"],"original":["--fix-bug-versions","--china","--userconfig=/Users/alsc/.cnpmrc","--disturl=https://npmmirror.com/mirrors/node","--registry=https://registry.npmmirror.com","antd-mobile-icon","-S"]}',
     npm_config_user_agent: 'npminstall/7.5.2 npm/? node/v16.11.1 darwin arm64',
     NODE: '/usr/local/bin/node',
     npm_node_execpath: '/usr/local/bin/node',
