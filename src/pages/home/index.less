@@ -1,0 +1,57 @@
+@class-prefix-home: ~'pages-home';
+
+.@{class-prefix-home} {
+    width: 100vw;
+    height: 100vh;
+    --height: 45px;
+
+    &-header {
+        z-index: 10000;
+        width: 100%;
+        position: fixed;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--intuition-color-background);
+        height: var(--height);
+
+        font-weight: bold;
+        border-bottom: 1px solid var(--intuition-color-border);
+
+        &-title {
+            font-size: var(--intuition-font-size-10);
+            text-align: center;
+        }
+    }
+
+    &-clear {
+        height: var(--height);
+    }
+
+    &-content {
+        padding: 12px;
+
+        &-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 40%;
+                border-radius: var(--intuition-radius-l);
+            }
+        }
+
+        ;
+
+        &-children {
+            font-weight: 500;
+            font-size: var(--intuition-font-size-7);
+        }
+    }
+
+    &&>.intuition-list {
+        background-color: #f5f7fa;
+    }
+}

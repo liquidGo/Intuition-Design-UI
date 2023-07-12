@@ -1,22 +1,10 @@
 import React from 'react';
-import { Switch } from 'antd-mobile';
+import {Switch} from 'antd-mobile';
 
 export default () => {
     return (
         <>
-            <C>
-                123
-            </C>
-            {/* <Switch>ceshi </Switch> */}
+            <Switch/>
         </>
-    )
-}
-
-const C = (props: any) => {
-    console.log(props)
-    return (
-        <div>
-            {props.children}
-        </div>
     )
 }

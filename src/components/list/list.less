@@ -1,12 +1,13 @@
 @class-prefix-list: ~"intuition-list";
 @class-prefix-list-item: ~"intuition-list-item";
 
+
 .@{class-prefix-list} {
     --herder-font-size: var(--intuition-font-size-7);
     --prefix-with: 'auto';
     --prefix-padding-right: 12px;
     --align-items: center;
-    --active-background-color: var(--intuition-color-background);
+    --active-background-color: var(--intuition-color-border);
     --border-inner: solid 1px var(--intuition-color-border);
     --border-top: solid 1px var(--intuition-color-border);
     --border-bottom: solid 1px var(--intuition-color-border);
@@ -105,6 +106,22 @@
         &&>.@{class-prefix-list-item}>* {
             opacity: 0.4;
             pointer-events: none;
+        }
+    }
+}
+
+a.@{class-prefix-list-item} {
+    &:active:not(.intuition-list-item-disabled) {
+        background-color: var(--active-background-color);
+
+        &::after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            width: 100%;
+            bottom: -1px;
+            left: 0;
+            border-bottom: var(--border-inner);
         }
     }
 }
