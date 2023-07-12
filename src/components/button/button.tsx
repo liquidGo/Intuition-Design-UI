@@ -2,7 +2,8 @@ import React, { useRef, useImperativeHandle, forwardRef, useState } from 'react'
 import classNames from 'classnames';
 import { DotLoading } from 'src/exportIndex';
 import { mergeProps } from 'src/utils/with-default-props';
-import { NativeProps, withNativeProps } from 'src/utils/native-props';
+import type { NativeProps } from '../../utils/native-props';
+import { withNativeProps } from 'src/utils/native-props';
 import { isPromise } from 'src/utils/validate';
 
 const classPrefix = `intuition-button`;
@@ -30,15 +31,14 @@ export type ButtonProps = {
 } & Pick<
     NativeButtonProps,
     'onMouseDown' | 'onMouseUp' | 'onTouchStart' | 'onTouchEnd' | 'id'
+> & NativeProps<
+    | '--text-color'
+    | '--background-color'
+    | '--border-radius'
+    | '--border-width'
+    | '--border-style'
+    | '--border-color'
 >
-    & NativeProps<
-        | '--text-color'
-        | '--background-color'
-        | '--border-radius'
-        | '--border-width'
-        | '--border-style'
-        | '--border-color'
-    >
 
 const defaultProps = {
     color: 'default'

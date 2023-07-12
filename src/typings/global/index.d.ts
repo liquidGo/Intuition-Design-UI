@@ -1,3 +1,4 @@
 declare module 'lodash/assignWith';
-declare module '@/*'
-declare module 'up-mobile/*'
+declare module '@/*';
+declare module 'src/*'
+declare module 'up-mobile/*';

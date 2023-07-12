@@ -62,6 +62,10 @@
   flex: none;
   padding-right: var(--prefix-padding-right);
 }
+.intuition-list-item-content-main {
+  flex: auto;
+  padding: 12px 0;
+}
 .intuition-list-item-content-extra {
   flex: none;
   padding-left: 12px;

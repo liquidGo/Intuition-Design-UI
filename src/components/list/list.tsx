@@ -3,17 +3,17 @@ import React, {
     ReactNode,
     useImperativeHandle,
     useRef,
-} from 'react';
-import classNames from 'classnames';
-import { NativeProps, withNativeProps } from 'src/utils/native-props';
-import { mergeProps } from 'src/utils/with-default-props';
+} from 'react'
+import classNames from 'classnames'
+import { NativeProps, withNativeProps } from '../../utils/native-props'
+import { mergeProps } from '../../utils/with-default-props'
 
 const classPrefix = 'intuition-list';
 
 export type ListProps = {
-    header?: ReactNode;
-    mode?: 'card' | 'default';
-    children?: ReactNode;
+    header?: ReactNode
+    mode?: 'default' | 'card' // 默认是整宽的列表，card 模式下展示为带 margin 和圆角的卡片
+    children?: ReactNode
 } & NativeProps<
     | '--active-background-color'
     | '--align-items'
@@ -29,22 +29,22 @@ export type ListProps = {
     | '--prefix-width'
 >
 
-export type ListRef = {
-    nativeElementRef: HTMLDivElement | null;
+const defaultProps = {
+    mode: 'default',
 }
 
-const defaultProps = {
-    mode: 'default'
+export type ListRef = {
+    nativeElement: HTMLDivElement | null
 }
 
 export const List = forwardRef<ListRef, ListProps>((p, ref) => {
-    const props = mergeProps(defaultProps, p);
-    const nativeElementRef = useRef<HTMLDivElement>(null);
+    const props = mergeProps(defaultProps, p)
+    const nativeElementRef = useRef<HTMLDivElement>(null)
 
     useImperativeHandle(ref, () => ({
-        get nativeElementRef() {
-            return nativeElementRef.current;
-        }
+        get nativeElement() {
+            return nativeElementRef.current
+        },
     }))
 
     return withNativeProps(

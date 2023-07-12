@@ -4,7 +4,8 @@ module.exports = {
     webpack: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
-            'up-mobile': path.resolve(__dirname, 'src/components'),
+            'src': path.resolve(__dirname, 'src'),
+            'utils': path.resolve(__dirname, 'src/utils'),
         },
     },
     plugins: [

@@ -1,14 +1,28 @@
 import * as React from 'react';
-import {  } from '../../exportIndex'
+import { List } from '../../exportIndex'
 import './index.less'
 
-const Home: React.FunctionComponent<any> =p => {
-   
-    return (
-        <div>   
+const Home: React.FunctionComponent<any> = p => {
 
-        </div>
+    return (
+        <List>
+
+            <List.Item>
+                测试
+            </List.Item>
+            <List.Item>
+                测试
+            </List.Item>
+            <List.Item>
+                测试
+            </List.Item>
+            <List.Item>
+                测试
+            </List.Item>
+        </List>
     );
 };
 
 export default Home;
+
+

@@ -7,7 +7,7 @@ export function mergeProps(...items: any[]) {
         return srcValue === undefined ? objValue : srcValue;
     }
 
-    let ret = [...items[0]]
+    let ret = { ...items[0] }
 
     for (let i = 1; i < items.length; i++) {
         ret = assignWith(ret, items[i], customizer);
