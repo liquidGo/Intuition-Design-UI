@@ -5,6 +5,7 @@
     height: 100vh;
     --height: 45px;
 
+
     &-header {
         z-index: 10000;
         width: 100%;
@@ -38,7 +39,7 @@
             align-items: center;
 
             img {
-                width: 40%;
+                width: 150px;
                 border-radius: var(--intuition-radius-l);
             }
         }
@@ -53,5 +54,10 @@
 
     &&>.intuition-list {
         background-color: #f5f7fa;
+    }
+
+    .intuition-list-item-content-prefix img{
+        display: flex;
+        align-items: center;
     }
 }

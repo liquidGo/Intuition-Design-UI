@@ -24,13 +24,17 @@ const defaultContentProps: ContentProps = {
     img: <img src={require('@/common/imgs/logo.png')} />
 }
 
+const listIcon = {
+    button: <img width={20} src={'https://cdn.uviewui.com/uview/example/button.png'} />,
+}
+
 const Home: FC = p => {
     const props = mergeProps(p, {})
 
 
     return (
         <div className={`${classPrefix}`}>
-            <Header  title='Intuition Design' />
+            <Header title='Intuition Design' />
             <div className={`${classPrefix}-clear`} />
             <Content>
                 <p>
@@ -38,7 +42,10 @@ const Home: FC = p => {
                 </p>
             </Content>
             <List header="通用">
-                <List.Item onClick={()=>{console.log(1)}}>
+                <List.Item
+                    prefix={listIcon.button}
+                    onClick={() => { console.log(1) }}
+                >
                     Button 按钮
                 </List.Item>
             </List>
