@@ -30,11 +30,11 @@ const listIcon = {
 
 const Home: FC = p => {
     const props = mergeProps(p, {})
-
+    console.log('@log: __dirname -----', __dirname);
 
     return (
         <div className={`${classPrefix}`}>
-            <Header title='Intuition Design' />
+            {/* <Header title='Intuition Design' /> */}
             <div className={`${classPrefix}-clear`} />
             <Content>
                 <p>
@@ -44,8 +44,7 @@ const Home: FC = p => {
             <List header="通用">
                 <List.Item
                     prefix={listIcon.button}
-                    onClick={() => { console.log(1) }}
-                >
+                    onClick={() => { console.log(1) }}>
                     Button 按钮
                 </List.Item>
             </List>
@@ -53,16 +52,16 @@ const Home: FC = p => {
     );
 };
 
-const Header: FC<HeaderProps> = p => {
-    const props = mergeProps(p, {})
-    return (
-        <div className={`${classPrefix}-header`}>
-            {isNodeWithContent(props.title) && (
-                <div className={`${classPrefix}-header-title`}>{props.title}</div>
-            )}
-        </div>
-    )
-}
+// const Header: FC<HeaderProps> = p => {
+//     const props = mergeProps(p, {})
+//     return (
+//         <div className={`${classPrefix}-header`}>
+//             {isNodeWithContent(props.title) && (
+//                 <div className={`${classPrefix}-header-title`}>{props.title}</div>
+//             )}
+//         </div>
+//     )
+// }
 
 const Content: FC<ContentProps> = p => {
     const props = mergeProps(p, defaultContentProps)
