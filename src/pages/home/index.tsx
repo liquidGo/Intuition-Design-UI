@@ -2,7 +2,9 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 import { List } from 'src/exportIndex';
+import { components, componentsName, componentsIcon } from '@/config/components'
 import { mergeProps } from '@/utils/with-default-props';
+import { withRouter } from 'react-router-dom';
 import { isNodeWithContent } from 'src/utils/is-node-with-content'
 
 
@@ -11,9 +13,6 @@ import 'src/global/global.less'
 
 const classPrefix = 'pages-home';
 
-type HeaderProps = {
-    title?: ReactNode
-}
 
 type ContentProps = {
     img?: ReactNode,
@@ -24,17 +23,13 @@ const defaultContentProps: ContentProps = {
     img: <img src={require('@/common/imgs/logo.png')} />
 }
 
-const listIcon = {
-    button: <img width={20} src={'https://cdn.uviewui.com/uview/example/button.png'} />,
-}
-
-const Home: FC = p => {
+const Home = withRouter(p => {
     const props = mergeProps(p, {})
-    console.log('@log: __dirname -----', __dirname);
+    const { history } = props;
+    console.log('@log: props -----', props);
 
     return (
         <div className={`${classPrefix}`}>
-            {/* <Header title='Intuition Design' /> */}
             <div className={`${classPrefix}-clear`} />
             <Content>
                 <p>
@@ -42,26 +37,22 @@ const Home: FC = p => {
                 </p>
             </Content>
             <List header="通用">
-                <List.Item
-                    prefix={listIcon.button}
-                    onClick={() => { console.log(1) }}>
-                    Button 按钮
-                </List.Item>
+                {components.common.map((item, index) => {
+                    const componentKey = item.split('/')[item.split('/')?.length - 1];
+                    return (
+                        <List.Item
+                            key={index}
+                            prefix={<img width={20} src={componentsIcon[item]} />}
+                            onClick={() => history.push(`/gallery/${componentKey}/${componentKey}_demo_1`)}>
+                            {componentsName[item]}
+                        </List.Item>
+                    )
+                })
+                }
             </List>
         </div>
     );
-};
-
-// const Header: FC<HeaderProps> = p => {
-//     const props = mergeProps(p, {})
-//     return (
-//         <div className={`${classPrefix}-header`}>
-//             {isNodeWithContent(props.title) && (
-//                 <div className={`${classPrefix}-header-title`}>{props.title}</div>
-//             )}
-//         </div>
-//     )
-// }
+})
 
 const Content: FC<ContentProps> = p => {
     const props = mergeProps(p, defaultContentProps)

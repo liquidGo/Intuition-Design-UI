@@ -6,32 +6,28 @@ import {
   Switch
 } from 'react-router-dom';
 import Layout from './pages/layout';
-import {demoConfig} from '@/config/demoConfig'
-
-console.log('@log: demoCofig -----', demoConfig);
+import { demoConfig } from '@/config/demoConfig'
+import 'lib-flexible'
 
 
 function App() {
   return (
-    <>
-      <Router>
-        <Layout>
-          <Switch>
-            {routes.map((v, i) => {
-              return (
-                <Route
-                  key={i}
-                  component={v.component}
-                  path={v.path}
-                  exact={v.exact}
-                />
-              )
-            })}
-          </Switch>
-        </Layout>
-      </Router>
-    </>
-
+    <Router>
+      <Layout>
+        <Switch>
+          {routes.map((v, i) => {
+            return (
+              <Route
+                key={i}
+                component={v.component}
+                path={v.path}
+                exact={v.exact}
+              />
+            )
+          })}
+        </Switch>
+      </Layout>
+    </Router>
   );
 }
 
