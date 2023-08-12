@@ -7,5 +7,5 @@ export const componentsName: Record<string, string> = {
 }
 
 export const componentsIcon: Record<string, string> = {
-    '/components/button': 'https://cdn.uviewui.com/uview/example/button.png'
+    '/components/button': 'http://24k.live/common/icon/button.png'
 }

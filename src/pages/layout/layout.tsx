@@ -77,12 +77,12 @@ export const Layout: FC<ILayoutProps> = p => {
         }
     }, [currentComponent])
 
-    useEffect(() => {
-        document.body.style.overflow = 'hidden'
-        return () => {
-            document.body.style.overflow = ''
-        }
-    })
+    // useEffect(() => {
+    //     document.body.style.overflow = 'hidden'
+    //     return () => {
+    //         document.body.style.overflow = ''
+    //     }
+    // })
 
     const demoSwitcher = window.location.hash.split('/')?.length === 4 && currentComponent && currentDemoIndex !== null && (
         <Popover.Menu
@@ -115,6 +115,7 @@ export const Layout: FC<ILayoutProps> = p => {
                     {title}
                 </NavBar>
             </div>
+            <div className={`${classPrefix}-clear-both`}/>
             {isNodeWithContent(props.children) && (
                 <div className={`${classPrefix}-children`}>
                     {props.children}
