@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
-import { List } from 'src/exportIndex';
+import { List } from 'antd-mobile';
 import { components, componentsName, componentsIcon } from '@/config/components'
 import { mergeProps } from '@/utils/with-default-props';
 import { withRouter } from 'react-router-dom';

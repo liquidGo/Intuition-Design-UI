@@ -1,12 +1,11 @@
-import React, { useRef, useImperativeHandle, forwardRef, useState } from 'react';
+import React, { FC, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { DotLoading } from 'src/exportIndex';
-import { mergeProps } from 'src/utils/with-default-props';
-import type { NativeProps } from '../../utils/native-props';
-import { withNativeProps } from 'src/utils/native-props';
-import { isPromise } from 'src/utils/validate';
+import { mergeProps } from '@/utils/with-default-props';
+import { NativeProps, withNativeProps } from '@/utils/native-props';
+import { isPromise } from '@/utils/validate';
+import { DotLoading } from 'antd-mobile';
 
-const classPrefix = `intuition-button`;
+const classPrefix = `theMoment-button`;
 
 type NativeButtonProps = React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -14,46 +13,53 @@ type NativeButtonProps = React.DetailedHTMLProps<
 >
 
 export type ButtonProps = {
-    color?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | (string & {})
-    fill?: 'solid' | 'outline' | 'none'
-    size?: 'mini' | 'small' | 'middle' | 'large'
-    block?: boolean
-    loading?: boolean | 'auto'
-    loadingText?: 'string'
-    loadingIcon?: React.ReactNode
-    disabled?: boolean
+    color?: "default" | 'primary' | 'success' | 'warning' | "danger";
+    block?: boolean;
+    fill?: 'solid' | 'outline' | 'none';
+    size?: 'mini' | 'small' | 'middle' | 'large';
+    loading?: boolean | 'auto';
+    loadingText?: string;
+    loadingIcon?: React.ReactNode;
+    shape?: 'default' | 'rounded' | 'rectangular';
+    disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
+    children?: React.ReactNode;
     onClick?: (
-        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => void | Promise<void> | unknown
-    type?: 'submit' | 'reset' | 'button'
-    shape?: 'default' | 'rounded' | 'rectangular'
-    children?: React.ReactNode
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => void | Promise<void> | unknown;
 } & Pick<
     NativeButtonProps,
     'onMouseDown' | 'onMouseUp' | 'onTouchStart' | 'onTouchEnd' | 'id'
 > & NativeProps<
     | '--text-color'
     | '--background-color'
+    | '--border-color'
     | '--border-radius'
     | '--border-width'
     | '--border-style'
-    | '--border-color'
 >
 
-const defaultProps = {
-    color: 'default'
-}
-
 export type ButtonRef = {
-    nativeElement: HTMLButtonElement | null
+    nativeElement: HTMLButtonElement | null;
 }
 
-export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
+const defaultProps: ButtonProps = {
+    color: 'default',
+    fill: 'solid',
+    size: 'middle',
+    shape: 'default',
+    type: 'button',
+    block: false,
+    loading: false,
+    loadingIcon: <DotLoading color='currentColor' />,
+}
 
+
+export const Button: FC<any> = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
     const props = mergeProps(defaultProps, p);
-    const [innerLoading, setInnerLoading] = useState(false);
+    const [interLoading, setInterLoading] = useState(false);
     const nativeButtonRef = useRef<HTMLButtonElement>(null);
-    const loading = props.loading === 'auto' ? innerLoading : props.loading;
+    const loading = props.loading === 'auto' ? interLoading : props.loading;
     const disabled = props.disabled || loading;
 
     useImperativeHandle(ref, () => ({
@@ -65,15 +71,16 @@ export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = async e => {
         if (!props.onClick) return;
 
-        const promise = props.onClick(e);
+        const promise = props.onClick(e)
 
         if (isPromise(promise)) {
             try {
-                setInnerLoading(true);
+                setInterLoading(true);
                 await promise;
-                setInnerLoading(false);
-            } catch (error) {
-                setInnerLoading(false);
+                setInterLoading(false);
+            } catch (e) {
+                setInterLoading(false);
+                throw e;
             }
         }
     }
@@ -82,24 +89,28 @@ export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
         props,
         <button
             ref={nativeButtonRef}
-            type={props.type}
             onClick={handleClick}
             className={classNames(
                 classPrefix,
                 props.color ? `${classPrefix}-${props.color}` : null,
                 {
                     [`${classPrefix}-block`]: props.block,
-                    [`${classPrefix}-disabled`]: disabled,
+                    [`${classPrefix}-disabled`]: props.disabled,
                     [`${classPrefix}-fill-outline`]: props.fill === 'outline',
                     [`${classPrefix}-fill-none`]: props.fill === 'none',
                     [`${classPrefix}-mini`]: props.size === 'mini',
                     [`${classPrefix}-small`]: props.size === 'small',
+                    [`${classPrefix}-middle`]: props.size === 'middle',
                     [`${classPrefix}-large`]: props.size === 'large',
-                    [`${classPrefix}-loading`]: loading
+                    [`${classPrefix}-loading`]: loading,
                 },
                 `${classPrefix}-shape-${props.shape}`
             )}
             disabled={disabled}
+            onMouseDown={props.onMouseDown}
+            onMouseUp={props.onMouseUp}
+            onTouchStart={props.onTouchStart}
+            onTouchEnd={props.onTouchEnd}
         >
             {loading ? (
                 <div className={`${classPrefix}-loading-wrapper`}>
@@ -107,8 +118,12 @@ export const Button = forwardRef<ButtonRef, ButtonProps>((p, ref) => {
                     {props.loadingText}
                 </div>
             ) : (
-                <div>{props.children}</div>
+                <div>
+                    {props.children}
+                </div>
+
             )}
+
         </button>
     )
 })

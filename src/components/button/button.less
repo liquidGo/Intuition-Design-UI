@@ -1,15 +1,13 @@
-@class-prefix-button: ~'intuition-button';
+@class-prefix-button: ~'theMoment-button';
 
 .@{class-prefix-button} {
-    --color: var(--intuition-color-text-light-solid);
-
-    --text-color: var(--intuition-button-text-color, var(--intuition-color-text));
-    --background-color: var(--intuition-button-background-color,
-            var(--intuition-color-background));
-    --border-radius: var(--intuition-button-border-radius, 4px);
-    --border-width: var(--intuition-button-border-width, 1px);
-    --border-style: var(--intuition-button-border-style, solid);
-    --border-color: var(--intuition-button-border-color, var(--intuition-color-border));
+    --color: var(--moment-color-text-light-solid);
+    --text-color: var(--moment-color-text);
+    --background-color: var(--moment-color-background);
+    --border-color: var(--moment-color-border);
+    --border-radius: var(--moment-radius-s);
+    --border-style: solid;
+    --border-width: 1px;
 
     color: var(--text-color);
     background-color: var(--background-color);
@@ -19,102 +17,106 @@
     height: auto;
     padding: 7px 12px;
     margin: 0;
-    font-size: var(--intuition-font-size-9);
+    font-size: var(--moment-font-size-9);
     line-height: 1.4;
     text-align: center;
     border: var(--border-width) var(--border-style) var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: opacity ease 0.15s;
-    user-select: none;
-
-    &:focus {
-        outline: none;
-    }
+    transition: opacity 0.3s ease;
 
     &::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        transform: translate(calc(var(--border-width) * -1),
-                calc(var(--border-width) * -1));
         width: 100%;
         height: 100%;
+        transform: translate(calc(var(--border-width) * -1),
+                calc(var(--border-width) * -1));
         background-color: #000;
         border: var(--border-width) var(--border-style) #000;
         border-radius: var(--border-radius);
-        opacity: 0;
-        content: ' ';
         box-sizing: content-box;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     &:active::before {
         opacity: 0.08;
     }
 
+
     &-default {
         &.@{class-prefix-button}-fill-outline {
             --background-color: transparent;
-            --border-color: var(--intuition-color-text);
+            --border-color: var(--moment-color-text);
         }
 
         &.@{class-prefix-button}-fill-none {
-            --background-color: transparent;
+            --bakcground-color: transparent;
             --border-width: 0px;
         }
     }
 
     &:not(&-default) {
-        --text-color: var(--intuition-color-text-light-solid);
+        --text-color:var(--moment-color-text-light-solid);
         --background-color: var(--color);
         --border-color: var(--color);
 
         &.@{class-prefix-button}-fill-outline {
-            --text-color: var(--color);
             --background-color: transparent;
+            --text-color: var(--color);
         }
 
         &.@{class-prefix-button}-fill-none {
-            --text-color: var(--color);
             --background-color: transparent;
+            --text-color: var(--color);
             --border-width: 0px;
         }
     }
 
+
+
     &-primary {
-        --color: var(--intuition-color-primary);
+        --color: var(--moment-color-primary);
     }
 
     &-success {
-        --color: var(--intuition-color-success);
+        --color: var(--moment-color-success);
     }
+
 
     &-danger {
-        --color: var(--intuition-color-danger);
+        --color: var(--moment-color-danger);
     }
 
+
     &-warning {
-        --color: var(--intuition-color-warning);
+        --color: var(--moment-color-warning);
     }
+
 
     &-block {
         display: block;
         width: 100%;
     }
 
+
     &-disabled {
         cursor: not-allowed;
-        opacity: 0.4;
+        opacity: .4;
 
         &:active::before {
             display: none;
         }
     }
 
+
     &&-mini {
         padding-top: 3px;
         padding-bottom: 3px;
-        font-size: var(--intuition-font-size-main);
+        font-size: var(--moment-font-size-main);
 
         &.@{class-prefix-button}-shape-rounded {
             padding-left: 9px;
@@ -122,29 +124,35 @@
         }
     }
 
+
     &&-small {
         padding-top: 3px;
         padding-bottom: 3px;
-        font-size: var(--intuition-font-size-7);
+        font-size: var(--moment-font-size-7);
     }
+
 
     &&-large {
         padding-top: 11px;
         padding-bottom: 11px;
-        font-size: var(--intuition-font-size-10);
+        font-size: var(--moment-font-size-10);
     }
+
 
     &&-shape-rounded {
         --border-radius: 1000px;
     }
 
+
     &&-shape-rectangular {
-        --border-radius: 0;
+        --border-radius: 0px;
     }
+
 
     &-loading {
         vertical-align: bottom;
     }
+
 
     &-loading-wrapper {
         display: flex;
@@ -152,8 +160,9 @@
         align-items: center;
         justify-content: center;
 
-        >.intuition-loading {
-            opacity: 0.6;
+        >.adm-loading {
+            opacity: .6;
         }
     }
+
 }

@@ -1,10 +1,61 @@
-import * as React from 'react';
+/* eslint-disable import/no-anonymous-default-export */
+import React from 'react'
+import { Space } from 'antd-mobile'
+import { Button } from '../button'
+import { DemoBlock, sleep } from 'demos/index'
+import { SearchOutline } from 'antd-mobile-icons'
 
-interface IButtonDemo2Props {
+export default () => {
+    return (
+        <>
+            <DemoBlock title='自定义图标'>
+                <Button>
+                    <Space>
+                        <SearchOutline />
+                        <span>搜索</span>
+                    </Space>
+                </Button>
+            </DemoBlock>
+
+            <DemoBlock title='形状'>
+                <Space wrap>
+                    <Button shape='default' color='primary'>
+                        Default Button
+                    </Button>
+                    <Button block shape='rounded' color='primary'>
+                        Rounded Button
+                    </Button>
+                    <Button block shape='rectangular' color='primary'>
+                        Rectangular Button
+                    </Button>
+                </Space>
+            </DemoBlock>
+
+            <DemoBlock title='加载状态'>
+                <Space wrap>
+                    <Button loading color='primary' loadingText='正在加载'>
+                        Loading
+                    </Button>
+                    <Button loading>Loading</Button>
+                    <Button
+                        loading='auto'
+                        onClick={async () => {
+                            await sleep(1000)
+                        }}
+                    >
+                        Auto Loading
+                    </Button>
+                </Space>
+            </DemoBlock>
+
+            <DemoBlock title='禁用状态'>
+                <Space wrap>
+                    <Button disabled>Disabled</Button>
+                    <Button disabled color='primary'>
+                        Disabled
+                    </Button>
+                </Space>
+            </DemoBlock>
+        </>
+    )
 }
-
-const ButtonDemo2: React.FunctionComponent<IButtonDemo2Props> = (props) => {
-    return (<div>456</div>);
-};
-
-export default ButtonDemo2;

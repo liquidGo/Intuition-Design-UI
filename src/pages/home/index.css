@@ -11,13 +11,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--intuition-color-background);
+  background: var(--moment-color-background);
   height: var(--height);
   font-weight: bold;
-  border-bottom: 1px solid var(--intuition-color-border);
+  border-bottom: 1px solid var(--moment-color-border);
 }
 .pages-home-header-title {
-  font-size: var(--intuition-font-size-10);
+  font-size: var(--moment-font-size-10);
   text-align: center;
 }
 .pages-home-clear {
@@ -33,11 +33,11 @@
 }
 .pages-home-content-img img {
   width: 150px;
-  border-radius: var(--intuition-radius-l);
+  border-radius: var(--moment-radius-l);
 }
 .pages-home-content-children {
   font-weight: 500;
-  font-size: var(--intuition-font-size-7);
+  font-size: var(--moment-font-size-7);
 }
 .pages-home.pages-home > .intuition-list {
   background-color: #f5f7fa;

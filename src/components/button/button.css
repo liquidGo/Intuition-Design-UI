@@ -1,0 +1,124 @@
+.theMoment-button {
+  --color: var(--moment-color-text-light-solid);
+  --text-color: var(--moment-color-text);
+  --background-color: var(--moment-color-background);
+  --border-color: var(--moment-color-border);
+  --border-radius: var(--moment-radius-s);
+  --border-style: solid;
+  --border-width: 1px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: auto;
+  padding: 7px 12px;
+  margin: 0;
+  font-size: var(--moment-font-size-9);
+  line-height: 1.4;
+  text-align: center;
+  border: var(--border-width) var(--border-style) var(--border-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.theMoment-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(calc(var(--border-width) * -1), calc(var(--border-width) * -1));
+  background-color: #000;
+  border: var(--border-width) var(--border-style) #000;
+  border-radius: var(--border-radius);
+  box-sizing: content-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.theMoment-button:active::before {
+  opacity: 0.08;
+}
+.theMoment-button-default.theMoment-button-fill-outline {
+  --background-color: transparent;
+  --border-color: var(--moment-color-text);
+}
+.theMoment-button-default.theMoment-button-fill-none {
+  --bakcground-color: transparent;
+  --border-width: 0px;
+}
+.theMoment-button:not(.theMoment-button-default) {
+  --text-color: var(--moment-color-text-light-solid);
+  --background-color: var(--color);
+  --border-color: var(--color);
+}
+.theMoment-button:not(.theMoment-button-default).theMoment-button-fill-outline {
+  --background-color: transparent;
+  --text-color: var(--color);
+}
+.theMoment-button:not(.theMoment-button-default).theMoment-button-fill-none {
+  --background-color: transparent;
+  --text-color: var(--color);
+  --border-width: 0px;
+}
+.theMoment-button-primary {
+  --color: var(--moment-color-primary);
+}
+.theMoment-button-success {
+  --color: var(--moment-color-success);
+}
+.theMoment-button-danger {
+  --color: var(--moment-color-danger);
+}
+.theMoment-button-warning {
+  --color: var(--moment-color-warning);
+}
+.theMoment-button-block {
+  display: block;
+  width: 100%;
+}
+.theMoment-button-disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.theMoment-button-disabled:active::before {
+  display: none;
+}
+.theMoment-button.theMoment-button-mini {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: var(--moment-font-size-main);
+}
+.theMoment-button.theMoment-button-mini.theMoment-button-shape-rounded {
+  padding-left: 9px;
+  padding-right: 9px;
+}
+.theMoment-button.theMoment-button-small {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: var(--moment-font-size-7);
+}
+.theMoment-button.theMoment-button-large {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  font-size: var(--moment-font-size-10);
+}
+.theMoment-button.theMoment-button-shape-rounded {
+  --border-radius: 1000px;
+}
+.theMoment-button.theMoment-button-shape-rectangular {
+  --border-radius: 0px;
+}
+.theMoment-button-loading {
+  vertical-align: bottom;
+}
+.theMoment-button-loading-wrapper {
+  display: flex;
+  height: 1.4em;
+  align-items: center;
+  justify-content: center;
+}
+.theMoment-button-loading-wrapper > .adm-loading {
+  opacity: 0.6;
+}
