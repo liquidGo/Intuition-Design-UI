@@ -61,6 +61,7 @@ a:active {
 }
 body.intuition-overflow-hidden {
   overflow: hidden !important;
+  overflow-x: hidden !important;
 }
 div.intuition-px-tester {
   --size: 1;
