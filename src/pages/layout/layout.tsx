@@ -29,19 +29,15 @@ compo.forEach(group => {
     group.forEach(item => {
         const keyArrs = item.split('/');
         const key = keyArrs[keyArrs.length - 1];
-        console.log('@log: key -----', key)
         componentToDemoPaths[key] = demos.filter(val =>
             val.startsWith(`${key}_demo`)
         )
 
         componentToTitle[key] = key;
-        console.log('@log: componentToDemoPaths -----', componentToTitle);
 
     })
 })
 
-
-console.log('@log: component -----', compo);
 
 export const Layout: FC<ILayoutProps> = p => {
     const props = mergeProps(defaultProps, p);
@@ -51,7 +47,6 @@ export const Layout: FC<ILayoutProps> = p => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log('@log: 1 -----',1);
         if(window.location.hash.split('/')?.length < 4) {
             setTitle('Intuition Design');
             setCurrentComponent('');
@@ -61,7 +56,6 @@ export const Layout: FC<ILayoutProps> = p => {
 
 
     useLayoutEffect(() => {
-        console.log('@log: 123123123 -----', 12312312);
         if (window.location.hash.split('/')?.length < 4) return;
         const demoKeyArrs = window.location.hash.split('/');
         const demoKey = demoKeyArrs[demoKeyArrs.length - 2];

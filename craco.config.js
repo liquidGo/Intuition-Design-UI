@@ -22,7 +22,8 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
             'src': path.resolve(__dirname, 'src'),
             'utils': path.resolve(__dirname, 'src/utils'),
-            'demos': path.resolve(__dirname, 'src/demos')
+            'demos': path.resolve(__dirname, 'src/demos'),
+            'components': path.resolve(__dirname, 'src/components'),
         },
     },
     plugins: [

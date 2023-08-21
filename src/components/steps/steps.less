@@ -24,12 +24,33 @@
         }
     }
 
-    &:last-child::after {
-        display: none;
+    &:last-child {
+        .@{class-prefix-step}-indicator::after {
+            display: none;
+
+        }
     }
 
     &-status-finish {
         --line-to-next-color: var(--moment-color-primary);
+    }
+
+    &-status-wait{
+        --icon-color:#e5e5e5;
+        .@{class-prefix-step}-title {
+            color: var(--moment-color-weak);
+        }
+    }
+
+    &-status-process{
+        --icon-color:var(--moment-color-primary);
+        .@{class-prefix-step}-title {
+            color: var(--moment-color-primary);
+        }
+    }
+
+    &-status-finish{
+        --icon-color: var(--adm-color-primary);
     }
 
     &-status-error {

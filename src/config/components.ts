@@ -1,11 +1,13 @@
 export const components = {
-    common: ['/components/button']
+    common: ['/components/button','/components/steps']
 }
 
 export const componentsName: Record<string, string> = {
-    '/components/button': 'Button按钮'
+    '/components/button': 'Button按钮',
+    '/components/steps': 'Steps步骤条'
 }
 
 export const componentsIcon: Record<string, string> = {
-    '/components/button': 'http://24k.live/common/icon/button.png'
+    '/components/button': 'http://24k.live/common/icon/button.png',
+    '/components/steps': 'http://24k.live/common/icon/steps.png'
 }

@@ -15,9 +15,7 @@ export default [
         path: '/gallery/:component?/:demo?',
         component: (props) => {
             const { component, demo } = props.match.params;
-            console.log('@log: props -----', props);
             const Component = demos[demo] ; 
-            console.log('@log: demos -----', demo);
             return <Component />
         },
         exact: true,
