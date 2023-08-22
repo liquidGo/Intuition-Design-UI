@@ -1,0 +1,68 @@
+.father {
+    --justify-content: flex-start;
+
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: var(--justify-content);
+    --line-to-next-color: #ccc;
+
+    .child {
+        position: relative;
+        width: 33%;
+        text-align: center;
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            content: " ";
+            width: 100%;
+            height: 1px;
+            background-color: var(--line-to-next-color);
+        }
+
+
+        &:nth-child(6n+4),&:nth-child(6n+5),&:nth-child(6n+6) {
+            &::after {
+                left: -50%;
+            }
+        }
+
+        &:nth-child(6n+3) {
+            &::after {
+                content: " ";
+                height: 100%;
+                width: 1px;
+                top:100%;
+                left: 50%;
+                background-color: var(--line-to-next-color);
+            }
+        }
+
+        &:nth-child(6n+6){
+            &::after {
+                content: " ";
+                height: 100%;
+                width: 1px;
+                top:100%;
+                left: 50%;
+                background-color: var(--line-to-next-color);
+            }
+        }
+
+        &:last-child {
+            &::after {
+                display: none;
+            }
+        }
+
+    }
+
+
+    .finish {
+        --line-to-next-color: blue;
+    }
+
+}
+

@@ -8,7 +8,7 @@ const stepClassPrefix = `theMoment-step`;
 
 const defaultIcon = <span className={`${stepClassPrefix}-icon-dot`} />
 
-type Direction = 'horizontal' | 'vertical';
+type Direction = 'horizontal' | 'vertical' | 'turning';
 
 export type StepsProps = {
     current?: number;
@@ -21,13 +21,39 @@ export type StepsProps = {
     | '--icon-size'
 >
 
+const reverseDom = (num: number) => {
+    if ((num - 4) % 6 === 0) {
+        return num + 2;
+    } else if ((num - 6) % 6 === 0) {
+        return num - 2;
+    } else {
+        return num
+    }
+}
+
+const reverseDirection = (node: React.ReactNode) => {
+    const num = React.Children.count(node);
+    if ((num - 4) % 6 === 0) {
+        return true;
+    } else if ((num - 5) % 6 === 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
 const defaultProps = {
     current: 0,
     direction: 'horizontal',
 }
 
 export const Steps: FC<StepsProps> = p => {
-    const props = mergeProps(defaultProps, p);
+    const props = mergeProps({
+        ...defaultProps,
+        style:{
+            '--justify-content': reverseDirection(p.children) ? 'flex-end' : 'flex-start',
+        }
+    }, p);
     const { current, direction } = props;
     const classString = classNames(classPrefix, `${classPrefix}-${direction}`)
 
@@ -41,6 +67,8 @@ export const Steps: FC<StepsProps> = p => {
 
                 const childProps = child.props;
 
+                let style = child.props.style || {};
+
                 let status = childProps.status || 'wait';
 
                 if (index < current) {
@@ -49,11 +77,21 @@ export const Steps: FC<StepsProps> = p => {
                     status = childProps.status || 'process';
                 }
 
+                if (direction === 'turning') {
+                    style = {
+                        ...style,
+                        order: reverseDom(index + 1),
+                    }
+                }
+
                 const icon = childProps.icon ?? defaultIcon;
+
+
 
                 return React.cloneElement(child, {
                     status,
                     icon,
+                    style
                 })
             })}
         </div>
