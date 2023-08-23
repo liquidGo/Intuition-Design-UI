@@ -1,5 +1,6 @@
 export const components = {
-    common: ['/components/button','/components/steps']
+    common: ['/components/button'],
+    information:['/components/steps']
 }
 
 export const componentsName: Record<string, string> = {

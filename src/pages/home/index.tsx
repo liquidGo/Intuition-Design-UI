@@ -50,6 +50,20 @@ const Home = withRouter(p => {
                 })
                 }
             </List>
+            <List header="信息展示">
+                {components.information.map((item, index) => {
+                    const componentKey = item.split('/')[item.split('/')?.length - 1];
+                    return (
+                        <List.Item
+                            key={index}
+                            prefix={<img width={20} src={componentsIcon[item]} />}
+                            onClick={() => history.push(`/gallery/${componentKey}/${componentKey}_demo_1`)}>
+                            {componentsName[item]}
+                        </List.Item>
+                    )
+                })
+                }
+            </List>
         </div>
     );
 })
