@@ -9,8 +9,7 @@ const Test = () => {
             title: '姓名',
             key: 'name',
             align: 'center',
-            sorter:true
-
+            sorter:((a:any,b:any)=>b.name-a.name),
         },
         {
             title: '性别',
@@ -24,17 +23,17 @@ const Test = () => {
 
     const dataSource = [
         {
-            name: 'Tom',
+            name: '1',
             sex: '男',
             record: '小学',
         },
         {
-            name: 'Lucy',
+            name: '2',
             sex: '女',
             record: '本科',
         },
         {
-            name: 'Jack',
+            name: '3',
             sex: '男',
             record: '高中',
         },
