@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { NativeProps, withNativeProps } from '@/utils/native-props';
@@ -12,6 +13,8 @@ export type TableProps = BasicTableProps & NativeProps<
     | "--table-th-wight"
     | "--table-header-color"
     | "--table-main-color"
+    | "--table-text-color"
+    | "--table-header-text"
 >
 
 const defaultProps: TableProps = {
@@ -20,15 +23,14 @@ const defaultProps: TableProps = {
     bordered: true,
     striped: false,
     showHeader: true,
+    noData: "暂无数据"
 }
 
 export const Table: FC<TableProps> = p => {
     const props = mergeProps(defaultProps, p)
-    const { showHeader, columns, data, onSort } = props;
-
+    const { showHeader, columns, data, onSort, summary, noData } = props;
     const [curData, setCurData] = useState(data);
     const [defaultSorter, setDefaultSorter] = useState(true);
-
 
     const handleSorterClick = (item: TableColumnsProps) => {
         if (item?.sorter) {
@@ -57,15 +59,20 @@ export const Table: FC<TableProps> = p => {
             {columns.map(item => (
                 <span
                     key={item.key}
-                    className={classNames(`${classPrefix}-td`, `${classPrefix}-th`, {
-                        [`${classPrefix}-align-${item.align}`]: item.align ?? false
-                    })}
+                    className={classNames(`${classPrefix}-td`,
+                        `${classPrefix}-align-center`,
+                        `${classPrefix}-th`,
+                        {
+                            [`${classPrefix}-align-${item.align}`]: item.align ?? false,
+                            [`${classPrefix}-bordered`]: props.bordered
+                        })}
                     onClick={() => handleSorterClick(item)}
                 >
                     {item.title}
                     {item.sorter && (
                         <span className={classNames(
-                            { [`${classPrefix}-th-sorted`]: !defaultSorter }
+                            `${classPrefix}-th-sorted`,
+                            { [`${classPrefix}-th-sorted-turn`]: !defaultSorter }
                         )}>{props.sorterIcon || <DownOutline width="12px" height="12px" />}</span>
                     )}
                 </span>
@@ -78,13 +85,14 @@ export const Table: FC<TableProps> = p => {
             {sortDataItem().map(([key, render], columnIndex) => (
                 <span
                     key={columnIndex}
-                    className={classNames(`${classPrefix}-td`, {
-                        [`${classPrefix}-align-${getColumnItem(key).align}`]: getColumnItem(key).align ?? false
+                    className={classNames(`${classPrefix}-td`, `${classPrefix}-align-center`, {
+                        [`${classPrefix}-align-${getColumnItem(key).align}`]: getColumnItem(key).align ?? false,
+                        [`${classPrefix}-bordered`]: props.bordered
                     })}
                 >
                     {typeof dataItem[key] === 'function' || typeof render === "function" ? (
                         <div>
-                            {render ? render(dataItem[key]) : dataItem[key](dataItem)}
+                            {render ? render(dataItem) : dataItem[key](dataItem)}
                         </div>
                     ) : (
                         <div>{dataItem[key]}</div>
@@ -93,10 +101,7 @@ export const Table: FC<TableProps> = p => {
             ))
             }
         </div>
-    )
-    )
-    )
-
+    )))
 
     useEffect(() => {
         if (data && String(data) !== String(curData)) {
@@ -104,7 +109,8 @@ export const Table: FC<TableProps> = p => {
         }
     }, [data])
 
-    return (
+    return withNativeProps(
+        props,
         <div className={classPrefix}>
             <div className={`${classPrefix}-main`}>
                 <div className={`${classPrefix}-main-head`}>
@@ -114,6 +120,9 @@ export const Table: FC<TableProps> = p => {
                     {bodyElement}
                 </div>
             </div>
+            {(summary || curData.length === 0) && (
+                <div className={`${classPrefix}-main-summary`}>{summary || noData}</div>
+            )}
         </div>
     )
 }

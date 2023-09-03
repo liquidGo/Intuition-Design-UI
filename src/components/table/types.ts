@@ -12,7 +12,7 @@ export interface TableColumnsProps {
 export interface BasicTableProps {
     columns: Array<TableColumnsProps>;
     data: any[];
-    bordered: boolean;
+    bordered?: boolean;
     summary?: string;
     noData?: React.ReactNode;
     striped?: boolean;

@@ -2,6 +2,12 @@
   width: 100vw;
   height: 100vh;
   --height: 45px;
+  --text-align: right;
+}
+.pages-home-by {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .pages-home-header {
   z-index: 10000;
@@ -42,7 +48,13 @@
 .pages-home.pages-home > .intuition-list {
   background-color: #f5f7fa;
 }
-.pages-home .intuition-list-item-content-prefix img {
+.pages-home .intuition-list-item-content-prefix,
+.pages-home .adm-list-item-content-prefix {
+  display: flex;
+  align-items: center;
+}
+.pages-home .intuition-list-item-content-prefix img,
+.pages-home .adm-list-item-content-prefix img {
   display: flex;
   align-items: center;
 }

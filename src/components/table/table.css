@@ -1,10 +1,14 @@
 .theMoment-table {
   --table-col-padding: 10px;
   --table-th-wight: bold;
-  --table-header-color: #f5f5f5;
+  --table-header-color: var(--moment-color-box);
   --table-main-color: #fff;
+  --table-text-color: #000;
+  --table-header-text: var(--table-text-color);
   display: flex;
+  flex-direction: column;
   width: 100%;
+  color: var(--table-text-color);
 }
 .theMoment-table .theMoment-table-tr {
   display: table-row;
@@ -16,9 +20,15 @@
 .theMoment-table .theMoment-table-tr .theMoment-table-th {
   font-weight: var(--table-th-wight);
 }
-.theMoment-table .theMoment-table-tr .theMoment-table-th-sorted {
+.theMoment-table .theMoment-table-tr .theMoment-table-th-sorted-turn {
   display: inline-block;
   transform: rotate(-180deg);
+}
+.theMoment-table .theMoment-table-tr .theMoment-table-th-sorted {
+  margin-left: 5px;
+}
+.theMoment-table .theMoment-table-tr .theMoment-table-bordered {
+  border: 1px solid var(--moment-color-border);
 }
 .theMoment-table .theMoment-table-align-left {
   text-align: left;
@@ -39,7 +49,17 @@
 .theMoment-table .theMoment-table-main-head {
   display: table-header-group;
   background: var(--table-header-color);
+  color: var(--table-header-text);
 }
 .theMoment-table .theMoment-table-main-body {
   display: table-row-group;
+}
+.theMoment-table .theMoment-table-main-summary {
+  color: var(--table-text-color);
+  background-color: var(--table-main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: var(--table-col-padding);
 }

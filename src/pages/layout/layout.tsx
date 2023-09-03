@@ -26,7 +26,7 @@ const defaultProps = {}
 
 
 compo.forEach(group => {
-    group.forEach(item => {
+    group.forEach((item:any) => {
         const keyArrs = item.split('/');
         const key = keyArrs[keyArrs.length - 1];
         componentToDemoPaths[key] = demos.filter(val =>

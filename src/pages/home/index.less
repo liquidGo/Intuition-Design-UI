@@ -4,7 +4,13 @@
     width: 100vw;
     height: 100vh;
     --height: 45px;
+    --text-align:right;
 
+    &-by{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
     &-header {
         z-index: 10000;
@@ -56,8 +62,13 @@
         background-color: #f5f7fa;
     }
 
-    .intuition-list-item-content-prefix img {
+    .intuition-list-item-content-prefix,
+    .adm-list-item-content-prefix {
         display: flex;
         align-items: center;
+        img {
+            display: flex;
+            align-items: center;
+        }
     }
 }
