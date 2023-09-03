@@ -16,9 +16,7 @@ export const columns: TableColumnsProps[] = [
     }, {
         title: "年龄",
         key: "age",
-        sorter: 
-        
-        (() => {
+        sorter: (() => {
             let status = false;
             let power = true
             return (a: any, b: any) => {
