@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { FC } from 'react';
+import React, { FC,useEffect } from 'react';
 import { List } from 'antd-mobile';
 import { MessageOutline } from 'antd-mobile-icons'
 import { components, componentsName, componentsIcon, componentsType } from '@/config/components'
@@ -43,10 +43,13 @@ export const ListElement = (history: any) => {
     ))
 }
 
-
 const Home = withRouter(p => {
     const props = mergeProps(p, {})
     const { history } = props;
+
+    useEffect(()=>{
+        sessionStorage.clear()
+    },[])
 
     return (
         <div className={`${classPrefix}`}>

@@ -26,7 +26,7 @@ const defaultProps = {}
 
 
 compo.forEach(group => {
-    group.forEach((item:any) => {
+    group.forEach((item: any) => {
         const keyArrs = item.split('/');
         const key = keyArrs[keyArrs.length - 1];
         componentToDemoPaths[key] = demos.filter(val =>
@@ -47,12 +47,12 @@ export const Layout: FC<ILayoutProps> = p => {
     const location = useLocation();
 
     useEffect(() => {
-        if(window.location.hash.split('/')?.length < 4) {
+        if (window.location.hash.split('/')?.length < 4) {
             setTitle('Intuition Design');
             setCurrentComponent('');
             setCurrentDemoIndex(null)
         }
-    },[location])
+    }, [location])
 
 
     useLayoutEffect(() => {
@@ -67,16 +67,9 @@ export const Layout: FC<ILayoutProps> = p => {
         if (!currentComponent) {
             setCurrentDemoIndex(null);
         } else {
-            setCurrentDemoIndex(0)
+            setCurrentDemoIndex(Number(sessionStorage.currentDemoIndex)||0)
         }
     }, [currentComponent])
-
-    // useEffect(() => {
-    //     document.body.style.overflow = 'hidden'
-    //     return () => {
-    //         document.body.style.overflow = ''
-    //     }
-    // })
 
     const demoSwitcher = window.location.hash.split('/')?.length === 4 && currentComponent && currentDemoIndex !== null && (
         <Popover.Menu
@@ -85,6 +78,7 @@ export const Layout: FC<ILayoutProps> = p => {
             actions={componentToDemoPaths[currentComponent].map((_, index) => ({
                 text: `Demo${index + 1}`,
                 onClick: () => {
+                    sessionStorage.setItem('currentDemoIndex', String(index))
                     setCurrentDemoIndex(index)
                     window.location.href = `#/gallery/${currentComponent}/${currentComponent}_demo_${index + 1}`
                 },
@@ -109,7 +103,7 @@ export const Layout: FC<ILayoutProps> = p => {
                     {title}
                 </NavBar>
             </div>
-            <div className={`${classPrefix}-clear-both`}/>
+            <div className={`${classPrefix}-clear-both`} />
             {isNodeWithContent(props.children) && (
                 <div className={`${classPrefix}-children`}>
                     {props.children}
