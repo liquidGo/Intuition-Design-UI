@@ -41,7 +41,6 @@ export const Table: FC<TableProps> = p => {
         if (item?.sorter) {
             onSort && onSort(item, data);
             if (typeof item.sorter === "function") {
-                console.log(curData.sort(item.sorter as (a: any, b: any) => number))
                 setCurData(cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number)));
                 newData=cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number));
             }
