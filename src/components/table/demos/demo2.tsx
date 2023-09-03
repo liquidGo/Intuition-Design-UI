@@ -16,7 +16,27 @@ export const columns: TableColumnsProps[] = [
     }, {
         title: "年龄",
         key: "age",
-        sorter: (a: any, b: any) => a.age - b.age
+        sorter: 
+        
+        (() => {
+            let status = false;
+            let power = true
+            return (a: any, b: any) => {
+                if (power) {
+                    status = !status;
+                    power = false;
+                    setTimeout(() => {
+                        power = true;
+                    }, 0);
+                }
+                if (status) {
+                    return a.age - b.age;
+                } else {
+                    return b.age - a.age;
+                }
+
+            }
+        })() as any
     }
 ]
 

@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { NativeProps, withNativeProps } from '@/utils/native-props';
 import { DownOutline } from 'antd-mobile-icons';
-import { cloneDeep, isEqual } from 'lodash';
+import { cloneDeep, isEqual, throttle } from 'lodash';
 import { mergeProps } from '@/utils/with-default-props';
 import { BasicTableProps, TableColumnsProps } from './types';
 
@@ -33,21 +33,30 @@ export const Table: FC<TableProps> = p => {
     const [curData, setCurData] = useState(cloneDeep(data));
     const [defaultSorter, setDefaultSorter] = useState(true);
 
-    const curDataPrev = useRef(cloneDeep(data));
+    const curDataPrev=useRef(cloneDeep(data))
 
     const handleSorterClick = (item: TableColumnsProps) => {
+        let newData=[]
+        
         if (item?.sorter) {
             onSort && onSort(item, data);
             if (typeof item.sorter === "function") {
-                setCurData(curData.sort(item.sorter as (a: any, b: any) => number));
-            } else {
-                setCurData(item.sorter === 'default' ? curData.sort() : curData)
+                console.log(curData.sort(item.sorter as (a: any, b: any) => number))
+                setCurData(cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number)));
+                newData=cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number));
+            }
+            else {
+                setCurData(cloneDeep(item.sorter === 'default' ? curData.sort() : curData))
+                newData=cloneDeep(item.sorter === 'default' ? curData.sort() : curData)
             }
         }
-        if (isEqual(curDataPrev.current, curData)) return;
+
+        if (isEqual(curDataPrev.current, newData)) return;
         setDefaultSorter(!defaultSorter);
-        curDataPrev.current = curData;
+        curDataPrev.current = newData;
+
     }
+
 
     const sortDataItem = () => {
         return columns.map((column: any) => {
@@ -114,6 +123,10 @@ export const Table: FC<TableProps> = p => {
             setDefaultSorter(true)
         }
     }, [data])
+
+    useEffect(()=>{
+        console.log(111111,curData)
+    },[curData])
 
 
     return withNativeProps(
