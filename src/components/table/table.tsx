@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { NativeProps, withNativeProps } from '@/utils/native-props';
 import { DownOutline } from 'antd-mobile-icons';
+import { cloneDeep, isEqual } from 'lodash';
 import { mergeProps } from '@/utils/with-default-props';
 import { BasicTableProps, TableColumnsProps } from './types';
 
@@ -29,8 +30,10 @@ const defaultProps: TableProps = {
 export const Table: FC<TableProps> = p => {
     const props = mergeProps(defaultProps, p)
     const { showHeader, columns, data, onSort, summary, noData } = props;
-    const [curData, setCurData] = useState(data);
+    const [curData, setCurData] = useState(cloneDeep(data));
     const [defaultSorter, setDefaultSorter] = useState(true);
+
+    const curDataPrev = useRef(cloneDeep(data));
 
     const handleSorterClick = (item: TableColumnsProps) => {
         if (item?.sorter) {
@@ -40,8 +43,10 @@ export const Table: FC<TableProps> = p => {
             } else {
                 setCurData(item.sorter === 'default' ? curData.sort() : curData)
             }
-            setDefaultSorter(false)
         }
+        if (isEqual(curDataPrev.current, curData)) return;
+        setDefaultSorter(!defaultSorter);
+        curDataPrev.current = curData;
     }
 
     const sortDataItem = () => {
@@ -106,8 +111,10 @@ export const Table: FC<TableProps> = p => {
     useEffect(() => {
         if (data && String(data) !== String(curData)) {
             setCurData(data)
+            setDefaultSorter(true)
         }
     }, [data])
+
 
     return withNativeProps(
         props,

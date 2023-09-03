@@ -9,6 +9,7 @@
   flex-direction: column;
   width: 100%;
   color: var(--table-text-color);
+  font-size: 14px;
 }
 .theMoment-table .theMoment-table-tr {
   display: table-row;
