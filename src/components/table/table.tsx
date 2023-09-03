@@ -124,11 +124,6 @@ export const Table: FC<TableProps> = p => {
         }
     }, [data])
 
-    useEffect(()=>{
-        console.log(111111,curData)
-    },[curData])
-
-
     return withNativeProps(
         props,
         <div className={classPrefix}>
