@@ -33,27 +33,25 @@ export const Table: FC<TableProps> = p => {
     const [curData, setCurData] = useState(cloneDeep(data));
     const [defaultSorter, setDefaultSorter] = useState(true);
 
-    const curDataPrev=useRef(cloneDeep(data))
+    const curDataPrev = useRef(cloneDeep(data))
 
     const handleSorterClick = (item: TableColumnsProps) => {
-        let newData=[]
-        
+        let newData = []
+
         if (item?.sorter) {
             onSort && onSort(item, data);
             if (typeof item.sorter === "function") {
                 setCurData(cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number)));
-                newData=cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number));
+                newData = cloneDeep(curData.sort(item.sorter as (a: any, b: any) => number));
             }
             else {
                 setCurData(cloneDeep(item.sorter === 'default' ? curData.sort() : curData))
-                newData=cloneDeep(item.sorter === 'default' ? curData.sort() : curData)
+                newData = cloneDeep(item.sorter === 'default' ? curData.sort() : curData)
             }
+            if (isEqual(curDataPrev.current, newData)) return;
+            setDefaultSorter(!defaultSorter);
+            curDataPrev.current = newData;
         }
-
-        if (isEqual(curDataPrev.current, newData)) return;
-        setDefaultSorter(!defaultSorter);
-        curDataPrev.current = newData;
-
     }
 
 
