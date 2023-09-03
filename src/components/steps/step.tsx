@@ -13,7 +13,6 @@ export type StepProps = {
 
 export const Step: FC<any> = props => {
     const { title, description, icon, status = 'wait' } = props;
-    console.log('@log: icon -----',icon);
 
     return withNativeProps(
         props,

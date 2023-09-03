@@ -31,7 +31,6 @@ export const columns2: TableColumnsProps[] = [
         title: "年龄",
         key: "age",
         render: (item: any) => {
-            console.log(item)
             if (item.name === "小明") {
                 return (
                     <Button
